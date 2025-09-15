@@ -59,6 +59,9 @@
       outline:2px solid var(--accent); outline-offset:2px;
     }
     .container{width:min(100% - 32px, var(--container)); margin-inline:auto}
+    @media (max-width: 768px) {
+      .container{width:min(100% - 20px, var(--container)); margin-inline:auto}
+    }
     .grid{display:grid; gap:24px}
     .grid-3{grid-template-columns: repeat(3, 1fr)}
     .grid-2{grid-template-columns: repeat(2, 1fr)}
@@ -94,7 +97,7 @@
     .nav-link:hover{background:color-mix(in oklab, var(--fg) 7%, transparent)}
     .btn{display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line); padding:10px 14px; border-radius:12px; font-weight:600; transition:.25s ease; cursor:pointer}
     /* ヘッダー内は高さを揃える */
-    .site-header .btn{height:36px; padding:8px 12px; border-radius:10px; line-height:1}
+    .site-header .btn{height:36px; padding:8px 12px; border-radius:10px; line-height:1; white-space:nowrap; font-size:0.9rem}
     .site-header .btn--icon{height:36px; padding:8px 10px}
     .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow-sm)}
     .btn--primary{border:none; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white}
@@ -114,9 +117,23 @@
       position:relative; padding: min(8vw, 96px) 0 min(10vw, 120px);
       overflow:hidden; border-bottom:1px solid var(--line);
     }
+    @media (max-width: 768px) {
+      .hero{
+        padding: min(6vw, 60px) 0 min(8vw, 80px);
+      }
+    }
     .hero h1{
       font-size: var(--step-4);
       line-height:1.08; letter-spacing:-.01em; margin: 8px 0 28px; position:relative;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    @media (max-width: 768px) {
+      .hero h1{
+        font-size: clamp(1.8rem, calc(1.4rem + 2vw), 2.5rem);
+        line-height: 1.2;
+        margin: 8px 0 20px;
+      }
     }
     /* 見出し下のアニメーション下線 */
     .hero h1 .u-underline{position:absolute; left:0; bottom:-12px; width:min(60ch, 92%); height:16px}
@@ -125,6 +142,22 @@
     @keyframes draw{to{stroke-dashoffset:0}}
     .hero p{color:var(--muted); font-size: var(--step-1); max-width: 60ch}
     .hero-cta{display:flex; gap:12px; margin: 22px 0 10px; flex-wrap:wrap}
+    @media (max-width: 768px) {
+      .hero p{
+        font-size: clamp(1rem, calc(0.9rem + 0.5vw), 1.2rem);
+        max-width: 100%;
+        line-height: 1.6;
+      }
+      .hero-cta{
+        flex-direction: column;
+        gap: 10px;
+        margin: 18px 0 8px;
+      }
+      .hero-cta .btn{
+        width: 100%;
+        justify-content: center;
+      }
+    }
     .metrics{display:flex; gap:20px; flex-wrap:wrap; margin-top:26px}
     .metric{border:none; padding:0; border-radius:0; min-width:180px; background:transparent}
     .metric b{font-size: var(--step-2)}
@@ -292,7 +325,7 @@
     <section class="section">
       <div class="container grid" style="gap:14px">
         <div class="pill">PHILOSOPHY</div>
-        <h2 class="reveal">ASPmanagement（名詞）</h2>
+        <h2 class="reveal">ASPmanagement</h2>
         <p class="lead reveal">
           1) 企業とパートナーを結び、透明で健全な“成果交換”を設計・運用する専門チーム。<br>
           2) 計測とクリエイティブの往復で、収益の再現性を高める人と仕組みの集合。
@@ -411,7 +444,7 @@
       </div>
       <div class="container" aria-label="アプローチ">
         <div class="eyebrow">APPROACH</div>
-        <h2 class="reveal">公開実績はまだ。でも、仕組みは公開します。</h2>
+        <h2 class="reveal">仕組みを公開します。</h2>
         <p class="lead reveal">成果が出るまで“ブラックボックス”にしません。進め方・判断基準・テンプレートを共有し、社内に残る運用資産を作ります。</p>
         <div class="grid grid-3" style="margin-top:18px">
           <article class="card reveal">
@@ -427,7 +460,7 @@
           <article class="card reveal">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 18V6l8-3 8 3v12" stroke="currentColor" fill="none"/><path d="M9 17h6" stroke="currentColor"/></svg></div>
             <h3>意思決定を可視化</h3>
-            <p>“いま何を優先するか”が見えるダッシュボード。KPI/媒体/損益で即断即決を支援します。</p>
+            <p>KPI/媒体/損益で即断即決を支援します。</p>
           </article>
         </div>
       </div>
@@ -452,7 +485,7 @@
           <article class="card reveal">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 18V6l8-3 8 3v12" stroke="currentColor" fill="none"/><path d="M9 17h6" stroke="currentColor"/></svg></div>
             <h3>意思決定を支える可視化</h3>
-            <p>媒体×訴求×クリエイティブ×導線の因果を見える化。ダッシュボードで即断即決。</p>
+            <p>媒体×訴求×クリエイティブ×導線の因果を見える化。</p>
           </article>
         </div>
       </div>
@@ -472,7 +505,7 @@
         <div class="grid grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px">
           <article class="card reveal"><h3>01 診断</h3><p>KPI/構成/タグ/媒体の現状把握とギャップ抽出。</p></article>
           <article class="card reveal"><h3>02 設計</h3><p>KPI/報酬/承認条件・媒体戦略・ABテスト設計。</p></article>
-          <article class="card reveal"><h3>03 実装</h3><p>タグ/ダッシュボード実装、媒体最適化の運用開始。</p></article>
+          <article class="card reveal"><h3>03 実装</h3><p>タグ、媒体最適化の運用開始。</p></article>
           <article class="card reveal"><h3>04 拡張</h3><p>成功パターンの横展開・新カテゴリ/媒体へ拡張。</p></article>
         </div>
       </div>
@@ -484,10 +517,10 @@
         <div class="eyebrow">NEWS</div>
         <h2 class="reveal">お知らせ</h2>
         <div class="grid grid-3" style="margin-top:14px">
-          <article class="card reveal">
+          <!-- <article class="card reveal">
             <h3>βパートナープログラム開始</h3>
             <p class="lead">公開実績の代わりに、設計・運用テンプレートを先に提供。初期から“仕組み化”を進めます。</p>
-          </article>
+          </article> -->
           <article class="card reveal">
             <h3>サイトを公開しました</h3>
             <p class="lead">現在、実績ページは準備中です。進捗は本ページで随時お知らせします。</p>
@@ -580,11 +613,11 @@
         <div class="grid grid-3" style="margin-top:18px">
           <div class="card reveal">
             <h3>所在地</h3>
-            <p>（例）東京都渋谷区○○ 1-2-3</p>
+            <p>大阪府東大阪市六万寺町1-20-32</p>
           </div>
           <div class="card reveal">
             <h3>連絡先</h3>
-            <p>info@aspmanagement.jp<br>050-1234-5678</p>
+            <p>allpass@aspmanagement.net<br>080-4418-6837</p>
           </div>
           <div class="card reveal">
             <h3>受付時間</h3>
@@ -599,7 +632,7 @@
   <footer>
     <div class="container foot">
       <small>© <span id="year"></span> ASPmanagement Co., Ltd. All rights reserved.</small>
-      <small><a href="#" class="nav-link">プライバシーポリシー</a> ・ <a href="#" class="nav-link">特定商取引法に基づく表記</a></small>
+      <!-- <small><a href="#" class="nav-link">プライバシーポリシー</a> ・ <a href="#" class="nav-link">特定商取引法に基づく表記</a></small> -->
     </div>
   </footer>
 
@@ -610,8 +643,15 @@
     "@type":"Organization",
     "name":"ASPmanagement",
     "url":"https://example.com/",
-    "email":"info@aspmanagement.jp",
-    "telephone":"+81-50-1234-5678",
+    "email":"allpass@aspmanagement.net",
+    "telephone":"+81-80-4418-6837",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "東大阪市",
+      "addressRegion": "大阪府",
+      "streetAddress": "六万寺町1-20-32",
+      "addressCountry": "JP"
+    },
     "sameAs": [],
     "logo": "https://example.com/logo.svg"
   }
@@ -689,9 +729,9 @@
         `お名前: ${data.get('name')}\nメール: ${data.get('email')}\n会社名: ${data.get('company') || ''}\nご予算: ${data.get('budget') || ''}\n\nご相談内容:\n${data.get('message')}\n`
       );
       // 送信先を必要に応じて変更
-      window.location.href = `mailto:info@aspmanagement.jp?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:allpass@aspmanagement.net?subject=${subject}&body=${body}`;
       status.style.display = 'block';
-      status.textContent = 'お使いのメールソフトが起動しない場合は、info@aspmanagement.jp 宛に直接お送りください。';
+      status.textContent = 'お使いのメールソフトが起動しない場合は、allpass@aspmanagement.net 宛に直接お送りください。';
     });
 
     // ============ Footer Year ============ //
